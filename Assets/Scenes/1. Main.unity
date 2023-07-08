@@ -312,7 +312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &211937055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 531868585}
   - component: {fileID: 531868586}
   m_Layer: 5
-  m_Name: crimeBar
+  m_Name: CrimeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2103,7 +2103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1361771754
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3688,9 +3688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55903bd59f95e954e840eb8d49bd1a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myMoney: 0
-  povRate: 0
-  crimeRate: 0
+  myMoney: {fileID: 1543272475}
+  povRate: {fileID: 1355020133}
+  crimeRate: {fileID: 531868586}
   repRate: 0
   timeCycle: 0
 --- !u!1 &1714357702

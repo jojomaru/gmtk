@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OverallStat : MonoBehaviour
 {
-    public int myMoney; //money (score)
-    public float povRate; //poverty rate
-    public float crimeRate; //crime rate
+    public TextMeshProUGUI myMoney; //money (score)
+    public Slider povRate; //poverty rate
+    public Slider crimeRate; //crime rate
     public float repRate; //reputation rate
-    public int timeCycle; //runs per quarter up to 4 years
+    public int timeCycle; //4 quarters per year, so 16 in total
+
+    //testing purpose
+    [SerializeField] int moneyVal;
+    [Range(0, 1)] public float povVal;
+    [Range(0, 1)] public float crimeVal;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +26,9 @@ public class OverallStat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        myMoney.text = moneyVal.ToString();
+        povRate.value = povVal;
+        crimeRate.value = crimeVal;
     }
 
     //placeholder for random event
@@ -46,5 +55,10 @@ public class OverallStat : MonoBehaviour
             }
         }
         return probs.Length - 1;
+    }
+
+    void GameOver()
+    {
+
     }
 }
