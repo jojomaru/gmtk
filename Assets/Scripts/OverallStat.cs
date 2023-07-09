@@ -11,9 +11,10 @@ public class OverallStat : MonoBehaviour
     public int moneyVal;
     [Range(0, 1)] public Slider povRate; //poverty rate
     [Range(0, 1)] public Slider crimeRate; //crime rate
-    public float repRate; //reputation rate
-    
+    [Range(0, 1)] public float repRate = 0.1f; //reputation rate
+    public GameObject gameOver, goBG;
     public Animator animator;
+    public QuestionList questList;
 
     //testing purpose
     [Range(0, 1)] public float povVal;
@@ -31,9 +32,9 @@ public class OverallStat : MonoBehaviour
         myMoney.text = moneyVal.ToString();
         povRate.value = povVal;
         crimeRate.value = crimeVal;
-        if (crimeRate.value == 1) GameOverDead();
-        //if(repRate == 0) GameOverBoo();
-        
+        if (crimeRate.value >= 1) StartCoroutine(GameOverDead()); //crime rate ending
+        if (repRate <= 0) StartCoroutine(GameOverRep()); //low reputation ending
+        if (questList.i == questList.questions.Count) StartCoroutine(Win());
         //checkMoney();
     }
 
@@ -82,16 +83,30 @@ public class OverallStat : MonoBehaviour
         }
     }
 
-    void GameOverDead()
+    IEnumerator GameOverDead()
     {
+        goBG.SetActive(true);
+        gameOver.GetComponent<TextMeshProUGUI>().text = "Game Over!\nYou embazzled the amount of $" + moneyVal + " during your term";
         animator.SetTrigger("GameOver");
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void GameOverBoo()
+    IEnumerator Win()
     {
+        goBG.SetActive(true);
+        gameOver.GetComponent<TextMeshProUGUI>().text = "Congratulations!\nYou have earned the amount of $" + moneyVal + " at the end of your term";
         animator.SetTrigger("GameOver");
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    
+    IEnumerator GameOverRep()
+    {
+        goBG.SetActive(true);
+        gameOver.GetComponent<TextMeshProUGUI>().text = "Game Over!\nYou were booted out from the office before your term ends.";
+        animator.SetTrigger("GameOver");
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
