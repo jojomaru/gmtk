@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OverallStat : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class OverallStat : MonoBehaviour
     public Animator animator;
 
     //testing purpose
-    [SerializeField] int moneyVal;
+    [SerializeField] public int moneyVal;
     [Range(0, 1)] public float povVal;
     [Range(0, 1)] public float crimeVal;
 
@@ -84,7 +85,7 @@ public class OverallStat : MonoBehaviour
     void GameOverDead()
     {
         animator.SetTrigger("GameOver");
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     void GameOverBoo()

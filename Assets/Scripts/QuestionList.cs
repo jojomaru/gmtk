@@ -7,9 +7,13 @@ using static newsFeed;
 
 public class QuestionList : MonoBehaviour
 {
+    [Header("Ink JSON")]
+    [SerializeField] private TextAsset inkJSON;
     List<string> questions = new List<string>();
     GameObject questDisp;
+    OverallStat overallStat;
     public Button g1, g2;
+    GameManager gm;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +36,12 @@ public class QuestionList : MonoBehaviour
     void Update()
     {
 
-        newQuest();
     }
 
     void newQuest()
     {
-        int randQuest = Random.Range(0,questions.Count);
-        questDisp.GetComponent<TextMeshProUGUI>().text = questions[randQuest];
-        switch(randQuest)
+        questDisp.GetComponent<TextMeshProUGUI>().text = questions[0];
+        /*switch(randQuest)
         {
             case 0:
                 g1.onClick.AddListener(event1a);
@@ -83,52 +85,83 @@ public class QuestionList : MonoBehaviour
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     void event1a()
     {
-
+        overallStat.moneyVal += 1000;
+        overallStat.repRate -= 0.1f;
+        overallStat.crimeRate.value += 0.1f;
+        gm.timeCycle++;
     }
     void event1b()
     {
-
+        overallStat.moneyVal -= 1000;
+        overallStat.repRate += 0.1f;
+        overallStat.crimeRate.value -= 0.1f;
+        gm.timeCycle++;
     }
     void event2a()
     {
-
+        overallStat.moneyVal -= 2000;
+        overallStat.repRate += 0.2f;
+        overallStat.povRate.value += 0.1f;
+        gm.timeCycle++;
     }
     void event2b()
     {
-
+        overallStat.moneyVal += 2000;
+        overallStat.repRate -= 0.2f;
+        overallStat.povRate.value += 0.1f;
+        gm.timeCycle++;
     }
     void event3a()
     {
-
+        int i = Random.Range(0,1);
+        if (i == 0)
+        {
+            overallStat.repRate += 0.2f;
+        }else overallStat.repRate -= 0.2f;
+        overallStat.crimeRate.value -= 0.1f;
+        gm.timeCycle++;
     }
     void event3b()
     {
-
+        overallStat.moneyVal -= 1000;
+        overallStat.repRate -= 0.1f;
+        gm.timeCycle++;
     }
     void event4a()
     {
-
+        overallStat.repRate += 0.2f;
+        overallStat.povRate.value += 0.1f;
+        gm.timeCycle++;
     }
     void event4b()
     {
-
+        overallStat.moneyVal += 2000;
+        overallStat.crimeRate.value += 0.1f;
+        gm.timeCycle++;
     }
     void event5a()
     {
-
+        overallStat.repRate -= 0.1f;
+        overallStat.crimeRate.value -= 0.1f;
+        gm.timeCycle++;
     }
     void event5b()
     {
-
+        overallStat.moneyVal -= 1000;
+        overallStat.repRate += 0.1f;
+        gm.timeCycle++;
     }
     void event6a()
     {
-
+        overallStat.moneyVal += 2000;
+        overallStat.repRate -= 0.2f;
+        overallStat.povRate.value += 0.1f;
+        gm.timeCycle++;
     }
     void event6b()
     {

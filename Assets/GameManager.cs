@@ -5,19 +5,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int timeCycle; //4 quarters per year, so 16 in total
+    public int timeCycle = 0; //4 quarters per year, so 16 in total
     public TextMeshProUGUI quarterDisp; //show Q(n) Year(n)
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeCycle++;
     }
 
     // Update is called once per frame
     void Update()
     {
         checkQuarter();
+        //if(timeCycle == 0)
     }
 
     void checkQuarter()
