@@ -10,7 +10,8 @@ public class OverallStat : MonoBehaviour
     public Slider povRate; //poverty rate
     public Slider crimeRate; //crime rate
     public float repRate; //reputation rate
-    public int timeCycle; //4 quarters per year, so 16 in total
+    
+    public Animator animator;
 
     //testing purpose
     [SerializeField] int moneyVal;
@@ -29,6 +30,10 @@ public class OverallStat : MonoBehaviour
         myMoney.text = moneyVal.ToString();
         povRate.value = povVal;
         crimeRate.value = crimeVal;
+        if (crimeRate.value == 1) GameOverDead();
+        //if(repRate == 0) GameOverBoo();
+        
+        checkMoney();
     }
 
     //placeholder for random event
@@ -57,8 +62,35 @@ public class OverallStat : MonoBehaviour
         return probs.Length - 1;
     }
 
-    void GameOver()
+    void checkMoney()
     {
+        if (povRate.value >= 0 && povRate.value <= 0.25)
+        {
+            moneyVal += moneyVal/2;
+        }else if (povRate.value > 0.25 && povRate.value <= 0.5)
+        {
+            return;
+        }else if(povRate.value > 0.5 && povRate.value <= 0.75)
+        {
+            moneyVal -= moneyVal/5;
+            crimeRate.value += 0.1f;
+        }else if(povRate.value >0.75 && povRate.value <= 1.00)
+        {
+            moneyVal -= moneyVal * 4 / 5;
+            repRate -= repRate / 4;
+        }
+    }
+
+    void GameOverDead()
+    {
+        animator.SetTrigger("GameOver");
 
     }
+
+    void GameOverBoo()
+    {
+        animator.SetTrigger("GameOver");
+    }
+
+    
 }
