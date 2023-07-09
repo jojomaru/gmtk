@@ -10,11 +10,11 @@ public class QuestionList : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
     List<string> questions = new List<string>();
-    GameObject questDisp;
-    OverallStat overallStat;
+    public GameObject questDisp;
+    public OverallStat overallStat;
     public Button g1, g2;
     GameManager gm;
-
+    int i = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,173 +30,107 @@ public class QuestionList : MonoBehaviour
         questions.Add("Look at me, I am the Cartel now.\r\nA local Crime Ring has reached out to us to discuss a potential partnership after hearing about your past dealings. Should we entertain them?\r\n");
 
         questDisp = transform.GetChild(1).gameObject;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        questDisp.GetComponent<TextMeshProUGUI>().text = questions[i];
     }
 
-    void newQuest()
+    public void event1a()
     {
-        questDisp.GetComponent<TextMeshProUGUI>().text = questions[0];
-        /*switch(randQuest)
+        Debug.Log(i);
+        switch (i)
         {
             case 0:
-                g1.onClick.AddListener(event1a);
-                g2.onClick.AddListener(event1b);
+                overallStat.moneyVal += 1000;
+                overallStat.repRate -= 0.1f;
+                overallStat.crimeVal += 0.1f;
+                i++;
                 break;
             case 1:
-                g1.onClick.AddListener(event2a);
-                g2.onClick.AddListener(event2b);
+                overallStat.moneyVal -= 2000;
+                overallStat.repRate += 0.2f;
+                overallStat.povVal += 0.1f;
+                i++;
                 break;
             case 2:
-                g1.onClick.AddListener(event3a);
-                g2.onClick.AddListener(event3b);
+                int rng = Random.Range(0, 1);
+                if (rng == 0)
+                {
+                    overallStat.repRate += 0.2f;
+                }
+                else overallStat.repRate -= 0.2f;
+                overallStat.crimeVal -= 0.1f;
+                i++;
                 break;
             case 3:
-                g1.onClick.AddListener(event4a);
-                g2.onClick.AddListener(event4b);
+                overallStat.repRate += 0.2f;
+                overallStat.povVal += 0.1f;
+                i++;
                 break;
             case 4:
-                g1.onClick.AddListener(event5a);
-                g2.onClick.AddListener(event5b);
+                overallStat.repRate -= 0.1f;
+                overallStat.crimeVal -= 0.1f;
+                i++;
                 break;
             case 5:
-                g1.onClick.AddListener(event6a);
-                g2.onClick.AddListener(event6b);
+                overallStat.moneyVal += 2000;
+                overallStat.repRate -= 0.2f;
+                overallStat.povVal += 0.1f;
+                i++;
                 break;
             case 6:
-                g1.onClick.AddListener(event7a);
-                g2.onClick.AddListener(event7b);
+                overallStat.moneyVal += 2000;
                 break;
-            case 7:
-                g1.onClick.AddListener(event8a);
-                g2.onClick.AddListener(event8b);
-                break;
-            case 8:
-                g1.onClick.AddListener(event9a);
-                g2.onClick.AddListener(event9b);
-                break;
-            case 9:
-                g1.onClick.AddListener(event10a);
-                g2.onClick.AddListener(event10b);
-                break;
-            default:
-                break;
-        }*/
+        }
     }
-
-    void event1a()
+    public void event1b()
     {
-        overallStat.moneyVal += 1000;
-        overallStat.repRate -= 0.1f;
-        overallStat.crimeRate.value += 0.1f;
-        gm.timeCycle++;
-    }
-    void event1b()
-    {
-        overallStat.moneyVal -= 1000;
-        overallStat.repRate += 0.1f;
-        overallStat.crimeRate.value -= 0.1f;
-        gm.timeCycle++;
-    }
-    void event2a()
-    {
-        overallStat.moneyVal -= 2000;
-        overallStat.repRate += 0.2f;
-        overallStat.povRate.value += 0.1f;
-        gm.timeCycle++;
-    }
-    void event2b()
-    {
-        overallStat.moneyVal += 2000;
-        overallStat.repRate -= 0.2f;
-        overallStat.povRate.value += 0.1f;
-        gm.timeCycle++;
-    }
-    void event3a()
-    {
-        int i = Random.Range(0,1);
-        if (i == 0)
+        switch (i)
         {
-            overallStat.repRate += 0.2f;
-        }else overallStat.repRate -= 0.2f;
-        overallStat.crimeRate.value -= 0.1f;
-        gm.timeCycle++;
-    }
-    void event3b()
-    {
-        overallStat.moneyVal -= 1000;
-        overallStat.repRate -= 0.1f;
-        gm.timeCycle++;
-    }
-    void event4a()
-    {
-        overallStat.repRate += 0.2f;
-        overallStat.povRate.value += 0.1f;
-        gm.timeCycle++;
-    }
-    void event4b()
-    {
-        overallStat.moneyVal += 2000;
-        overallStat.crimeRate.value += 0.1f;
-        gm.timeCycle++;
-    }
-    void event5a()
-    {
-        overallStat.repRate -= 0.1f;
-        overallStat.crimeRate.value -= 0.1f;
-        gm.timeCycle++;
-    }
-    void event5b()
-    {
-        overallStat.moneyVal -= 1000;
-        overallStat.repRate += 0.1f;
-        gm.timeCycle++;
-    }
-    void event6a()
-    {
-        overallStat.moneyVal += 2000;
-        overallStat.repRate -= 0.2f;
-        overallStat.povRate.value += 0.1f;
-        gm.timeCycle++;
-    }
-    void event6b()
-    {
-
-    }
-    void event7a()
-    {
-
-    }
-    void event7b()
-    {
-
-    }
-    void event8a()
-    {
-
-    }
-    void event8b()
-    {
-
-    }
-    void event9a()
-    {
-
-    }
-    void event9b()
-    {
-
-    }
-    void event10a()
-    {
-
-    }
-    void event10b()
-    {
-
+            case 0:
+                overallStat.moneyVal -= 1000;
+                overallStat.repRate += 0.1f;
+                overallStat.crimeVal -= 0.1f;
+                i++;
+                break;
+            case 1:
+                overallStat.moneyVal += 2000;
+                overallStat.repRate -= 0.2f;
+                overallStat.povVal += 0.1f;
+                i++;
+                break;
+            case 2:
+                overallStat.moneyVal -= 1000;
+                overallStat.repRate -= 0.1f;
+                i++;
+                break;
+            case 3:
+                overallStat.moneyVal += 2000;
+                overallStat.crimeVal += 0.1f;
+                i++;
+                break;
+            case 4:
+                overallStat.moneyVal -= 1000;
+                overallStat.repRate += 0.1f;
+                i++;
+                break;
+            case 5:
+                overallStat.moneyVal += 1000;
+                overallStat.povVal += 0.1f;
+                i++;
+                break;
+            case 6:
+                overallStat.moneyVal += 4000;
+                int rng = Random.Range(0, 1);
+                if (rng == 0)
+                {
+                    overallStat.repRate -= 0.2f;
+                }
+                break;
+        }
     }
 }

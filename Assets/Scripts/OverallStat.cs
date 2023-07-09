@@ -8,14 +8,14 @@ using UnityEngine.SceneManagement;
 public class OverallStat : MonoBehaviour
 {
     public TextMeshProUGUI myMoney; //money (score)
-    public Slider povRate; //poverty rate
-    public Slider crimeRate; //crime rate
+    public int moneyVal;
+    [Range(0, 1)] public Slider povRate; //poverty rate
+    [Range(0, 1)] public Slider crimeRate; //crime rate
     public float repRate; //reputation rate
     
     public Animator animator;
 
     //testing purpose
-    [SerializeField] public int moneyVal;
     [Range(0, 1)] public float povVal;
     [Range(0, 1)] public float crimeVal;
 
@@ -34,7 +34,7 @@ public class OverallStat : MonoBehaviour
         if (crimeRate.value == 1) GameOverDead();
         //if(repRate == 0) GameOverBoo();
         
-        checkMoney();
+        //checkMoney();
     }
 
     //placeholder for random event
